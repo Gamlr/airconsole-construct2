@@ -16,6 +16,14 @@ More information about the plugin:
 
 http://developers.airconsole.com/#/guides/construct2
 
+## Version 1.7.0.20
+* Added basic Translation functionality
+- Enter com.airconsole.plugin.unity to use test message keys such as left, right, and center.
+- Handles basic translation by key, such as welcome_message. Does not do string replacements.
+- Must have translations in the Developer Console 
+- If translation missing, undefined string returned (make sure you are not translating the word undefined) 
+- More info available here: https://developers.airconsole.com/#!/guides/translations
+
 ## Version 1.7.0.19
 * On device motion should be a trigger
 * Edit profile impossible from screen
@@ -93,6 +101,15 @@ http://developers.airconsole.com/#/guides/construct2
 
 ## Version 1.7.0.1
 * Initial plugin release
+
+## Translation Tips
+To try translations (this assumes you have some AirConsole knowledge):
+1. Open Pong Example
+2. Export as HTML5
+3. Upload/Run in local server in combination with AirConsole Simulator
+4. When asked, enter com.airconsole.plugin.unity as your game id. Later, you will want to modify this with your game id.
+5. See how the screen says something along the lines of, "center was translated to..."
+6. See the Translation event sheet to modify with your own usages.
 
 ## About this Plugin
 This plugin was created and is maintained by Psychokiller1888 and not by the AirConsole Team. It has become so popular that the AirConsole Team has decided to host it in the official AirConsole GitHub account.

@@ -60,6 +60,14 @@ function AirConsoleOffline() {
 	};
 	AirConsoleOffline.prototype.convertPlayerNumberToDeviceId = function() {console.log('AirConsole mock-up: Converting player number to device id')};
 	AirConsoleOffline.prototype.convertDeviceIdToPlayerNumber = function() {console.log('AirConsole mock-up: Converting device id to player number')};
+	AirConsoleOffline.prototype.getLanguage = function() {
+		console.log('AirConsole mock-up: Getting THIS device language - default to en for offline.');
+		return "en";
+	};
+	AirConsoleOffline.prototype.getTranslation = function() {
+		console.log('AirConsole mock-up: Translations undefined when offline. undefined will be returned (same response if translation not found).');
+		return "undefined";
+	};
 }
 
 (function ()
@@ -101,14 +109,14 @@ function AirConsoleOffline() {
 	};
 
 	var instanceProto = pluginProto.Instance.prototype;
-
+	var PROPERTY_INDEX_FOR_TRANSLATIONS = 5;
 	// called whenever an instance is created
 	instanceProto.onCreate = function()
 	{
 		var self = this;
 		if (typeof AirConsole !== 'undefined') {
 			this.runningOffline = false;
-			if (self.properties[1] === 1) {
+			if (self.properties[1] === 1) { // controller
 				this.gameReady = true;
 				var config = {orientation: AirConsole.ORIENTATION_LANDSCAPE, synchronize_time: false, setup_document: true, device_motion: false};
 				if (self.properties[2] === 1) {
@@ -120,11 +128,21 @@ function AirConsoleOffline() {
 				if (self.properties[4] > 0) {
 					config.device_motion = self.properties[4];
 				}
-
+				if (self.properties[PROPERTY_INDEX_FOR_TRANSLATIONS] == 1) { // translations, 1 = yes, 0 = no
+					config.translation = true;
+				}
+				else{
+					config.translation = false;
+				}
 				this.airConsole = new AirConsole(config);
 			}
-			else {
-				this.airConsole = new AirConsole();
+			else { // screen
+				if (self.properties[PROPERTY_INDEX_FOR_TRANSLATIONS] == 1) { 
+					this.airConsole = new AirConsole({translation: true});
+				}
+				else{
+					this.airConsole = new AirConsole();
+				}
 			}
 		}
 		else {
@@ -693,7 +711,26 @@ function AirConsoleOffline() {
 			ret.set_string('');
 		}
 	};
-
+	
+	// defaults to this device, which is 0 for the screen. This value is set by the browsers language setting and can be overridden in testing (see AirConsole translation guide) https://developers.airconsole.com/#!/guides/translations.
+	// Returns "undefined" if not found
+	Exps.prototype.GetLanguageOfThisDevice = function (ret) {
+		var langFromAC = this.airConsole.getLanguage ();
+		if (typeof langFromAC === 'string' || langFromAC instanceof String)
+			ret.set_string(langFromAC);
+		else
+			ret.set_string("undefined"); 
+	};
+	
+	// if not found, returns "undefined" so careful not to translate the word undefined.
+	Exps.prototype.GetTranslationByKey = function (ret, keyAsStr) {
+		var transFromAC = this.airConsole.getTranslation(keyAsStr);
+		if (typeof transFromAC === 'string' || transFromAC instanceof String)
+			ret.set_string(transFromAC);
+		else
+			ret.set_string("undefined");  
+	};
+	
 	pluginProto.exps = new Exps();
 
 	function getProperties(object) {

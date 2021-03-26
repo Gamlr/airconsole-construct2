@@ -2,7 +2,7 @@
 	return {
 		"name":			"AirConsole 2",			// as appears in 'insert object' dialog, can be changed as long as "id" stays the same
 		"id":			"AirConsole2",			// this is used to identify this plugin and is saved to the project; never change it
-		"version":		"1.7.0.19",				// 3 first digits follow AirConsole API's version. Last digit for the plugin's version
+		"version":		"1.7.0.20",				// 3 first digits follow AirConsole API's version. Last digit for the plugin's version
 		"description":	"Extend your game with local multiplayer fun",
 		"author":		"Psychokiller1888 for N-Dreams AG",
 		"help url":		"https://github.com/AirConsole/airconsole-construct2/wiki",
@@ -261,6 +261,12 @@ AddExpression(21, ef_return_number, "Ads", "Ads", "IsAddShowing", "Returns 1 if 
 AddExpression(22, ef_return_number, "Profile", "Profile", "GetThisDeviceId", "Returns the current device id from which this function is called.");
 
 AddExpression(23, ef_return_number, "Controller only", "Controller only", "MotionData", "Returns a JSON converted C2Dictionary containing the device motion data. This works for controllers only, and the plugin should have it's 'Device motion' property set higher than 0");
+
+AddExpression(24, ef_return_string, "Translation", "Translation", "GetLanguageOfThisDevice", "Returns the current defined AC Language that is set for the screen (device 0). Determined by the browsers language.");
+
+AddStringParam("Key", "key of message to translate");
+AddExpression(25, ef_return_string, "Translation", "Translation", "GetTranslationByKey", "Translates by looking up the key in the AirConsole Developer Console Translation Console, and the language set by the browser. Example key WELCOME_MSG could be Hello There! When not found, undefined is returned.");
+
 ////////////////////////////////////////
 ACESDone();
 
@@ -280,7 +286,8 @@ var property_list = [
 	new cr.Property(ept_section, "Controller only", "These properties only take effect if 'Is controller' is checked"),
 	new cr.Property(ept_combo, "Orientation", "Landscape", "CONTROLLER ONLY - Sets this controller in either PORTRAIT or LANDSCAPE mode", "Landscape|Portrait"),
 	new cr.Property(ept_combo, "Synchronize time", "false", "CONTROLLER ONLY - Enable time synchronization with server. This is needed for 'getServerTime()'", "false|true"),
-	new cr.Property(ept_integer, "Device motion", 0, "CONTROLLER ONLY - If set > 0, onDeviceMotion gets called every 'Device motion' milliseconds with the data from the accelerometer and gyroscope")
+	new cr.Property(ept_integer, "Device motion", 0, "CONTROLLER ONLY - If set > 0, onDeviceMotion gets called every 'Device motion' milliseconds with the data from the accelerometer and gyroscope"),
+	new cr.Property(ept_combo, "Translations", "No", "Are you using AC Translations?", "No|Yes")
 ];
 	
 // Called by IDE when a new object type is to be created
