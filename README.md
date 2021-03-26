@@ -16,13 +16,14 @@ More information about the plugin:
 
 http://developers.airconsole.com/#/guides/construct2
 
-## Version 1.7.0.20
+## Version 1.7.0.20 (WIP)
 * Added basic Translation functionality
 - Enter com.airconsole.plugin.unity to use test message keys such as left, right, and center.
 - Handles basic translation by key, such as welcome_message. Does not do string replacements.
 - Must have translations in the Developer Console 
 - If translation missing, undefined string returned (make sure you are not translating the word undefined) 
 - More info available here: https://developers.airconsole.com/#!/guides/translations
+- One minor bug with offline mode, alerts an error. Should be fixed soon(aka: this is still a work in progress).
 
 ## Version 1.7.0.19
 * On device motion should be a trigger
