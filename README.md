@@ -23,7 +23,7 @@ http://developers.airconsole.com/#/guides/construct2
 - Must have translations in the Developer Console 
 - If translation missing, undefined string returned (make sure you are not translating the word undefined) 
 - More info available here: https://developers.airconsole.com/#!/guides/translations
-- One minor bug with offline mode, alerts an error. Should be fixed soon(aka: this is still a work in progress).
+
 
 ## Version 1.7.0.19
 * On device motion should be a trigger
