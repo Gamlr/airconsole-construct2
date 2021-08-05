@@ -22,7 +22,7 @@ function AirConsoleOffline() {
 	};
 	AirConsoleOffline.prototype.getUID = function() {
 		console.log('AirConsole mock-up: Getting UID');
-		return -9999;
+		return "-9999";
 	};
 	AirConsoleOffline.prototype.isPremium = function() {
 		console.log('AirConsole mock-up: Checking if premium');

@@ -1,4 +1,4 @@
-⚡ ⚡ ⚡ **ATTENTION:** THIS PLUGIN IS NOT MAINTAINED ANYMORE. We, however, appreciate any pull requests. Thank you for your understanding
+⚡ ⚡ ⚡ **ATTENTION:** THIS PLUGIN IS NOT MAINTAINED BY AIRCONSOLE. This is based off of the AirConsole version, with my own additions.
 
 
 # AirConsole Construct2
@@ -9,20 +9,22 @@ Construct 2 is a great 2D game creation tool that allows anybody, with or withou
 
 This plugin allows you to build both games and the controllers with Construct2! Don't forget to check out the external merging tool when you need to package your game before testing: https://github.com/Psychokiller1888/AirConsoleMerger/releases
 
-## Installation
-[Download the plugin](c2airconsole.c2addon) and drag and drop it into Construct2
-
+## Basic Info
 More information about the plugin:
 
 http://developers.airconsole.com/#/guides/construct2
 
+## Version 1.7.0.21
+* Removed c2addon file, please use the plugin files and put them into the C2 Exporters/Plugins folder
+* Fixed offline GetUID to return a string, preventing a type conversion error
+
 ## Version 1.7.0.20 (WIP)
 * Added basic Translation functionality
-- Enter com.airconsole.plugin.unity to use test message keys such as left, right, and center.
-- Handles basic translation by key, such as welcome_message. Does not do string replacements.
-- Must have translations in the Developer Console 
-- If translation missing, undefined string returned (make sure you are not translating the word undefined) 
-- More info available here: https://developers.airconsole.com/#!/guides/translations
+* Enter com.airconsole.plugin.unity to use test message keys such as left, right, and center.
+* Handles basic translation by key, such as welcome_message. Does not do string replacements.
+* Must have translations in the Developer Console 
+* If translation missing, undefined string returned (make sure you are not translating the word undefined) 
+* More info available here: https://developers.airconsole.com/#!/guides/translations
 
 
 ## Version 1.7.0.19
